@@ -1,0 +1,205 @@
+Synthesis report
+Wed May 21 10:33:10 2025
+Quartus Prime Version 25.1.0 Build 129 03/26/2025 SC Pro Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Synthesis Summary
+  3. Synthesis Settings
+---- Analysis & Elaboration Stage Reports ----
+  4. Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2025  Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Altera and sold by Altera or its authorized distributors.  Please
+refer to the Altera Software License Subscription Agreements 
+on the Quartus Prime software download page.
+
+
+
++-----------------------------------------------------------+
+; Synthesis Summary                                         ;
++-----------------------+-----------------------------------+
+; Synthesis Status      ; Failed - Wed May 21 10:33:09 2025 ;
+; Revision Name         ; Despertador                       ;
+; Top-level Entity Name ; Despertador                       ;
+; Family                ; Cyclone 10 GX                     ;
++-----------------------+-----------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Synthesis Settings                                                                                                                  ;
++---------------------------------------------------------------------------------+-------------------------+-------------------------+
+; Option                                                                          ; Setting                 ; Default Value           ;
++---------------------------------------------------------------------------------+-------------------------+-------------------------+
+; Device                                                                          ; 10CX220YF780I5G         ;                         ;
+; Top-level entity name                                                           ; Despertador             ; Despertador             ;
+; Family name                                                                     ; Cyclone 10 GX           ; Cyclone V               ;
+; Maximum number of parallel out-of-context synthesis jobs                        ; Auto                    ; Auto                    ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                      ; On                      ;
+; Enable compact report table                                                     ; Off                     ; Off                     ;
+; Design Assistant include IP blocks                                              ; Off                     ; Off                     ;
+; High fanout net threshold for RAM inference                                     ; 15                      ; 15                      ;
+; Design Assistant limit on reported violations per rule                          ; 5000                    ; 5000                    ;
+; Optimization Mode                                                               ; Balanced                ; Balanced                ;
+; rtm_high_performance_effort                                                     ; Off                     ; Off                     ;
+; physical_synthesis_high_effort                                                  ; Off                     ; Off                     ;
+; Allow Register Merging                                                          ; On                      ; On                      ;
+; Allow Register Duplication                                                      ; On                      ; On                      ;
+; Allow Register Retiming                                                         ; On                      ; On                      ;
+; Restructure Multiplexers                                                        ; Auto                    ; Auto                    ;
+; Waive gated clock synchronizer check                                            ; On                      ; On                      ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                     ; Off                     ;
+; Create Debugging Nodes for IP Cores                                             ; Off                     ; Off                     ;
+; Preserve fewer node names                                                       ; On                      ; On                      ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable                  ; Enable                  ;
+; Verilog Version                                                                 ; Verilog_2001            ; Verilog_2001            ;
+; VHDL Version                                                                    ; VHDL_1993               ; VHDL_1993               ;
+; State Machine Processing                                                        ; Auto                    ; Auto                    ;
+; Safe State Machine                                                              ; Auto                    ; Auto                    ;
+; Iteration limit for constant Verilog loops                                      ; 5000                    ; 5000                    ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                     ; 250                     ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                      ; On                      ;
+; Infer RAMs from Raw Logic                                                       ; On                      ; On                      ;
+; DSP Action on miss                                                              ; Ignore                  ; Ignore                  ;
+; DSP Block Balancing                                                             ; Auto                    ; Auto                    ;
+; NOT Gate Push-Back                                                              ; On                      ; On                      ;
+; Power-Up Don't Care                                                             ; On                      ; On                      ;
+; Remove Redundant Logic Cells                                                    ; Off                     ; Off                     ;
+; Remove Duplicate Registers                                                      ; On                      ; On                      ;
+; Ignore CARRY Buffers                                                            ; Off                     ; Off                     ;
+; Ignore CASCADE Buffers                                                          ; Off                     ; Off                     ;
+; Ignore GLOBAL Buffers                                                           ; Off                     ; Off                     ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                     ; Off                     ;
+; Ignore LCELL Buffers                                                            ; Off                     ; Off                     ;
+; Ignore SOFT Buffers                                                             ; On                      ; On                      ;
+; Optimization Technique                                                          ; Balanced                ; Balanced                ;
+; Carry Chain Length                                                              ; 70                      ; 70                      ;
+; Auto Carry Chains                                                               ; On                      ; On                      ;
+; Auto Open-Drain Pins                                                            ; On                      ; On                      ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                     ; Off                     ;
+; Auto ROM Replacement                                                            ; On                      ; On                      ;
+; Auto RAM Replacement                                                            ; On                      ; On                      ;
+; Auto DSP Block Replacement                                                      ; On                      ; On                      ;
+; Auto Shift Register Replacement                                                 ; Auto                    ; Auto                    ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto                    ; Auto                    ;
+; Auto Clock Enable Replacement                                                   ; On                      ; On                      ;
+; Strict RAM Replacement                                                          ; Off                     ; Off                     ;
+; Allow Synchronous Control Signals                                               ; On                      ; On                      ;
+; Force Use of Synchronous Clear Signals                                          ; Off                     ; Off                     ;
+; Auto Resource Sharing                                                           ; Off                     ; Off                     ;
+; Allow Any RAM Size For Recognition                                              ; Off                     ; Off                     ;
+; Allow Any ROM Size For Recognition                                              ; Off                     ; Off                     ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                     ; Off                     ;
+; Ignore translate_off and synthesis_off directives                               ; Off                     ; Off                     ;
+; Timing-Driven Synthesis                                                         ; On                      ; On                      ;
+; Report Propagation of Constraints                                               ; On                      ; On                      ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                     ; Off                     ;
+; Synchronization Register Chain Length                                           ; 3                       ; 3                       ;
+; Power Optimization During Synthesis                                             ; Normal compilation      ; Normal compilation      ;
+; HDL message level                                                               ; Level2                  ; Level2                  ;
+; Suppress Register Optimization Related Messages                                 ; Off                     ; Off                     ;
+; Number of Protected Registers Reported in Synthesis Report                      ; 100                     ; 100                     ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000                    ; 5000                    ;
+; Number of Optimized Away Hierarchies Reported in Synthesis Report               ; 100                     ; 100                     ;
+; Number of Top Root Causes Reported in Synthesis Report                          ; 10                      ; 10                      ;
+; Group Identical Hierarchies in Optimized Away Hierarchies Report                ; On                      ; On                      ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000                    ; 5000                    ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                     ; 100                     ;
+; Clock MUX Protection                                                            ; On                      ; On                      ;
+; Auto Gated Clock Conversion                                                     ; Off                     ; Off                     ;
+; Block Design Naming                                                             ; Auto                    ; Auto                    ;
+; SDC constraint protection                                                       ; Off                     ; Off                     ;
+; Optimization and Constraint Precedence                                          ; Prioritize Optimization ; Prioritize Optimization ;
+; Synthesis Effort                                                                ; Auto                    ; Auto                    ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                      ; On                      ;
+; Analysis & Synthesis Message Level                                              ; Medium                  ; Medium                  ;
+; Disable Register Merging Across Hierarchies                                     ; Auto                    ; Auto                    ;
+; Resource Aware Inference For Block RAM                                          ; On                      ; On                      ;
+; Automatic Parallel Synthesis                                                    ; On                      ; On                      ;
+; Extract Redundant User Nets                                                     ; Off                     ; Off                     ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                     ; Off                     ;
+; Disable DSP Negate Inferencing                                                  ; Off                     ; Off                     ;
+; Report Parameter Settings                                                       ; On                      ; On                      ;
+; Report Parameter Settings to ASCII                                              ; On                      ; On                      ;
+; Report Source Assignments                                                       ; On                      ; On                      ;
+; Report Source Assignments to ASCII                                              ; On                      ; On                      ;
+; Report Resource Utilization by Entity to ASCII                                  ; On                      ; On                      ;
+; Size of the Latch Report                                                        ; 100                     ; 100                     ;
+; Enable VHDL static assertion support                                            ; Off                     ; Off                     ;
+; Enable SystemVerilog static assertion support                                   ; Off                     ; Off                     ;
+; Enable State Machines Inference                                                 ; On                      ; On                      ;
+; Allow RAMs Inferred In Generate-For Loop For Verilog                            ; Off                     ; Off                     ;
+; Enable formal verification support during compilation                           ; Off                     ; Off                     ;
+; Enable hierarchical dumps for formal verification support during compilation    ; Off                     ; Off                     ;
+; Size of the PR Initial Conditions Report                                        ; 100                     ; 100                     ;
+; Number of Registers with Ignored Power-Up Settings Reported in Synthesis Report ; 500                     ; 500                     ;
+; Report PR Initial Values as Errors                                              ; Off                     ; Off                     ;
+; Fractal Synthesis                                                               ; Off                     ; Off                     ;
+; Synthesis Available Resource Multiplier                                         ; 1                       ; 1                       ;
+; Message Level for Unconnected Output Ports                                      ; Warning                 ; Warning                 ;
+; Pack Barrelshifters into Carry Chains for Better Area                           ; Auto                    ; Auto                    ;
+; Initialize Verilog enums to X                                                   ; Off                     ; Off                     ;
+; Enable dynamic report                                                           ; Off                     ; Off                     ;
+; Show Collapsible Rows in Ascii Report for Warning Summary Reports               ; On                      ; On                      ;
+; Enable RTL Analysis Debug Mode                                                  ; Off                     ; Off                     ;
+; Enable preserve for debug assignments                                           ; Off                     ; Off                     ;
++---------------------------------------------------------------------------------+-------------------------+-------------------------+
+
+
++--------------------+
+; Synthesis Messages ;
++--------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Synthesis
+    Info: Version 25.1.0 Build 129 03/26/2025 SC Pro Edition
+    Info: Processing started: Wed May 21 10:33:07 2025
+    Info: System process ID: 7945
+Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off Despertador -c Despertador
+Info: qis_default_flow_script.tcl version: #1
+Info: Initializing Synthesis...
+Info: Project = "Despertador"
+Info: Revision = "Despertador"
+Info (21958): Initialized Quartus Message Database
+Info: Analyzing source files
+Error (22595): Intel Quartus Prime software does not support entity "/home/ju/Downloads/Relogio-20250521T142727Z-1-001/Relogio/Despertador.bdf" of type "BDF". Convert BDF files to Verilog or VHDL for continued support. File: /home/ju/Downloads/Relogio-20250521T142727Z-1-001/Relogio/Despertador.bdf Line: 0
+Error (17653): VHDL error at dsf_std.vhd(407): prefix of attribute high is not a type mark File: /home/ju/Downloads/Relogio-20250521T142727Z-1-001/Relogio/dsf_std.vhd Line: 407
+Error (17653): VHDL error at dsf_std.vhd(495): prefix of attribute high is not a type mark File: /home/ju/Downloads/Relogio-20250521T142727Z-1-001/Relogio/dsf_std.vhd Line: 495
+Error (17653): VHDL error at dsf_std.vhd(524): prefix of attribute high is not a type mark File: /home/ju/Downloads/Relogio-20250521T142727Z-1-001/Relogio/dsf_std.vhd Line: 524
+Error (17653): VHDL error at dsf_std.vhd(561): prefix of attribute high is not a type mark File: /home/ju/Downloads/Relogio-20250521T142727Z-1-001/Relogio/dsf_std.vhd Line: 561
+Error (17653): VHDL error at dsf_std.vhd(595): prefix of attribute high is not a type mark File: /home/ju/Downloads/Relogio-20250521T142727Z-1-001/Relogio/dsf_std.vhd Line: 595
+Error (17653): VHDL error at dsf_std.vhd(840): prefix of attribute high is not a type mark File: /home/ju/Downloads/Relogio-20250521T142727Z-1-001/Relogio/dsf_std.vhd Line: 840
+Error (17653): VHDL error at dsf_std.vhd(872): prefix of attribute high is not a type mark File: /home/ju/Downloads/Relogio-20250521T142727Z-1-001/Relogio/dsf_std.vhd Line: 872
+Error (13827): Ignored construct dsf_std at dsf_std.vhd(926) due to previous errors File: /home/ju/Downloads/Relogio-20250521T142727Z-1-001/Relogio/dsf_std.vhd Line: 926
+Error (17653): VHDL error at dsf_datareg.vhd(36): prefix of attribute high is not a type mark File: /home/ju/Downloads/Relogio-20250521T142727Z-1-001/Relogio/dsf_datareg.vhd Line: 36
+Error (13827): Ignored construct datareg_a at dsf_datareg.vhd(95) due to previous errors File: /home/ju/Downloads/Relogio-20250521T142727Z-1-001/Relogio/dsf_datareg.vhd Line: 95
+Error (17653): VHDL error at dsf_debounce.vhd(114): prefix of attribute high is not a type mark File: /home/ju/Downloads/Relogio-20250521T142727Z-1-001/Relogio/dsf_debounce.vhd Line: 114
+Error (13827): Ignored construct debounce_a at dsf_debounce.vhd(233) due to previous errors File: /home/ju/Downloads/Relogio-20250521T142727Z-1-001/Relogio/dsf_debounce.vhd Line: 233
+Error (17653): VHDL error at dsf_freqdivider.vhd(35): prefix of attribute high is not a type mark File: /home/ju/Downloads/Relogio-20250521T142727Z-1-001/Relogio/dsf_freqdivider.vhd Line: 35
+Error (13827): Ignored construct freqdivider_a at dsf_freqdivider.vhd(137) due to previous errors File: /home/ju/Downloads/Relogio-20250521T142727Z-1-001/Relogio/dsf_freqdivider.vhd Line: 137
+Error: Failed to elaborate design: 
+Error: Flow failed: Errors generated during elaboration
+Error: Quartus Prime Synthesis was unsuccessful. 17 errors, 0 warnings
+    Error: Peak virtual memory: 1470 megabytes
+    Error: Processing ended: Wed May 21 10:33:10 2025
+    Error: Elapsed time: 00:00:03
+    Error: System process ID: 7945
+
+

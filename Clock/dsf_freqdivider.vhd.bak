@@ -1,0 +1,146 @@
+library ieee;
+use ieee.numeric_bit.all;
+use work.dsf_std.all;
+
+entity dsf_freqdivider is
+
+  port (
+ 
+    -- Habilitação da função digital.
+    enable  :  in       bit;
+	areset  :  in       bit;
+
+    -- Frequência de entrada do divisor.
+    clk     :  in       bit;
+
+    -- Frequência de saída do divisor.
+	q       :  buffer   bit;
+
+	-- Parâmetro: Fator de Escala do divisor: 1000 (SCALE_FACTOR).
+	count   :  buffer  integer range (1000 - 1) downto 0 := 0
+
+  );
+
+end dsf_freqdivider;
+
+
+
+architecture freqdivider_a of dsf_freqdivider is
+
+  -- --------------------------------------------------------------------------
+  -- @detail              CONSTANTES GLOBAIS DA ARQUITETURA                  --
+  -- --------------------------------------------------------------------------
+
+  -- Fator de escala do divisor (SCALE FACTOR).
+  constant  MAX_FACTOR   :  integer  :=  count'high;
+  constant  LEN_FACTOR   :  integer  :=  MAX_FACTOR + 1;
+  
+  -- Parâmetro: Ciclo de trabalho do divisor (DUTY_CYCLE).
+  constant  LEN_DUTY     :  integer  :=  1;  -- 1 ciclo em alto.
+  constant  LIM_DUTY     :  integer  :=  LEN_FACTOR - LEN_DUTY;
+  
+  
+  -- --------------------------------------------------------------------------
+  -- @detail               FUNÇÕES GLOBAIS DA ARQUITETURA                    --
+  -- --------------------------------------------------------------------------
+
+  function reset_count (enable : bit; count : integer) return integer is
+
+	variable  cnt  :  integer range MAX_FACTOR downto 0;
+
+  begin
+
+    if (enable = '1') then
+
+      -- Modo limpa.
+      cnt := 0;
+
+    else
+
+      -- Modo memória.
+      cnt := count;
+
+    end if;
+
+    return cnt;
+
+  end reset_count;
+
+
+
+  function inc_count (enable : bit; count : integer) return integer is
+
+	variable  cnt  :  integer range MAX_FACTOR downto 0;
+
+  begin
+
+    if (enable = '1') then
+
+      -- Modo contagem.
+      cnt := increment(count, MAX_FACTOR);
+
+    else
+
+      -- Modo memória.
+      cnt := count;
+
+    end if;
+
+    return cnt;
+
+  end inc_count;
+
+
+
+  function get_q (areset : bit; count : integer) return bit is
+
+	variable  q  :  bit;
+
+  begin
+
+    if (areset = '1') then
+
+      -- Modo limpa.
+      q := '0';
+
+    else
+
+      -- Detecção do ciclo de trabalho.
+      if (count < LIM_DUTY) then
+
+        -- Modo baixo.
+        q := '0';
+
+      else
+
+        -- Modo alto.
+        q := '1';
+
+      end if;
+
+    end if;
+
+    return q;
+
+  end get_q
+
+
+begin
+
+  -- OP1. Contagem crescente.
+  count <= reset_count(enable, count) when (areset = '1') else
+           inc_count(enable, count) when low2high(clk);
+
+  -- OP2. Ciclo de trabalho.
+  q <= get_q (areset, count);
+
+end freqdivider_a;
+
+
+
+
+
+
+
+
+

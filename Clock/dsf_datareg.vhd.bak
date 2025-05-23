@@ -1,0 +1,167 @@
+-- ############################################################################
+-- @copyright   Miguel Grimm <miguelgrimm@gmail>
+--
+-- @brief       Função digital registrador de dados paralelo.
+--
+-- @file        dsf_datareg.vhd
+-- @version     1.0
+-- @date        27 Julho 2020
+--
+-- @section     HARDWARES & SOFTWARES.
+--              +compiler     Quartus Web Edition versão 13 sp 1.
+--                            Quartus Primer Lite Edition Versão 18.
+--              +revisions    Versão (data): Descrição breve.
+--                            ++ 1.0 (27 Julho 2020): Versão inicial.
+--
+-- @section     AUTHORS & DEVELOPERS.
+--              +institution  UFAM - Universidade Federal do Amazonas.
+--              +courses      Engenharia da Computação / Engenharia Elétrica.
+--              +teacher      Miguel Grimm <miguelgrimm@gmail.com>
+--
+--                            Compilação e Simulação:
+-- 				 +student	   Kevin Guimarães <kevin.guimaraes37@gmail.com>
+--
+-- @section     LICENSE
+--
+--              GNU General Public License (GNU GPL).
+--
+--              Este programa é um software livre; Você pode redistribuí-lo
+--              e/ou modificá-lo de acordo com os termos do "GNU General Public
+--              License" como publicado pela Free Software Foundation; Seja a
+--              versão 3 da licença, ou qualquer outra versão posterior.
+--
+--              Este programa é distribuído na esperança de que seja útil,
+--              mas SEM QUALQUER GARANTIA; Sem a garantia implícita de
+--              COMERCIALIZAÇÃO OU USO PARA UM DETERMINADO PROPÓSITO.
+--              Veja o site da "GNU General Public License" para mais detalhes.
+--
+-- @htmlonly    http://www.gnu.org/copyleft/gpl.html
+--
+-- @section     REFERENCES.
+--              + CHU, Pong P. RTL Hardware Design Using VHDL. 2006. 669 p.
+--              + AMORE, Robert d'. VHDL - Descrição e Síntese de Circuitos
+--                Digitais. 2. ed. Rio de Janeiro : LTC, 2012. 292 p.
+--              + PEDRONI, Volnei A. Eletrônica Digital Moderna e VHDL.
+--                Rio de Janeiro : Elsevier, 2010. 619 p.
+--              + TOCCI, Ronald J., WIDNER, Neal S. & MOSS, Gregory.
+--                Sistemas Digitais - Princípios e Aplicações, 12. ed.
+--                São Paulo : Person Education do Brasil, 2018. 1034 p.
+--
+-- ############################################################################
+
+library ieee;
+use ieee.numeric_bit.all;
+use work.dsf_std.all;
+
+
+-- ----------------------------------------------------------------------------
+-- @brief      Registrador de dados.
+--
+-- Esta função digital armazena um dado da entrada paralela e o
+-- coloca o dado armazenado na saída paralela.
+--
+-- @param[in]  enable  -  1, habilita todas as operações da função digital e
+--                        0, desabilita em caso contrário.
+--
+--             areset  -  1, limpa de forma assíncrona a memória do registrador e
+--                        0, mantém a memória do registrador.
+--
+--             load_en -  1, carrega de forma síncrona a memória do registrador
+--                           com a entrada do dado na ativação do clk e
+--                        0, mantém a memória do registrador.
+--
+--             clk     -  sinal de sincronismo ativo na transição de subida.
+--
+--             data    -  0..2**LEN_DATA-1, valor do dado paralelo a ser
+--                                          carregado no registrador.
+--
+-- @param[out] q       -  0..2**LEN_DATA-1, valor do dado armazenado.
+-- ----------------------------------------------------------------------------
+entity dsf_datareg is
+
+  port (
+
+    -- Controles assíncrono.
+    enable   :  in      bit;
+    areset   :  in      bit;
+
+    -- Controles síncrono.
+    load_en  :  in      bit;
+    clk      :  in      bit;
+
+    -- Entrada e saída de dados do registrador: 4 bits
+    data     :  in      integer range (2**4 - 1) downto 0;
+    q        :  buffer  integer range (2**4 - 1) downto 0 := 0
+
+  );
+
+end dsf_datareg;
+
+
+architecture datareg_a of dsf_datareg is
+
+  -- --------------------------------------------------------------------------
+  --                   CONSTANTES GLOBAIS DA ARQUITETURA                     --
+  -- --------------------------------------------------------------------------
+
+  -- Limite do índice do vetor de bits.
+  constant  MAX_DATA  :  integer  :=  data'high;
+
+
+  -- --------------------------------------------------------------------------
+  --                   FUNÇÕES GLOBAIS DA ARQUITETURA                     --
+  -- --------------------------------------------------------------------------
+
+  function reset_q (enable : bit; q : integer) return integer is
+
+    variable  reg  :  integer range MAX_DATA downto 0 := 0;
+
+  begin
+
+    if (enable = '1') then
+
+      -- Modo limpa.
+      reg := 0;
+	  
+	else
+	
+      -- Modo memória.
+	  reg := q;
+	
+	end if;
+
+	return reg;
+
+  end reset_q;
+
+
+  function load_q (enable : bit; load_en : bit; data: integer; q : integer) return integer is
+
+    variable  reg  :  integer range MAX_DATA downto 0 := 0;
+
+  begin
+
+    if (enable = '1') and (load_en = '1') then
+	
+      -- Modo carga.
+      reg := data;
+
+    else
+	
+	  -- Modo memória.
+      reg := q;
+
+    end if;
+
+    return reg;
+
+  end load_q;
+
+
+begin
+
+  -- OP1. Resultado de carga.
+  q <= reset_q(enable, q) when (areset  = '1') else 
+       load_q(enable, load_en, data, q) when low2high(clk);
+			     
+end datareg_a;

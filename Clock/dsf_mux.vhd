@@ -1,6 +1,6 @@
 entity mux is
   port (
-    -- Dados de entrada: vetores de 16 bits e o bit do botão p.
+    -- Dados de entrada: vetores de 16 bits e o bit do botão p. (teste git)
     data_1  : in  bit_vector(15 downto 0);
     data_0  : in  bit_vector(15 downto 0);
     p      : in  bit;

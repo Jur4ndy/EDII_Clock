@@ -1,0 +1,96 @@
+-- ############################################################################
+-- @copyright   Miguel Grimm <miguelgrimm@gmail>
+--
+-- @brief       Concatenação de vetores para um vetor de dados.
+--
+-- @file        dsf_vectors2vector.vhd
+-- @version     1.0
+-- @date        27 Julho 2024
+--
+-- @section     HARDWARES & SOFTWARES.
+--              +compiler     Quartus Web Edition versão 13 sp 1.
+--                            Quartus Primer Lite Edition Versão 18.
+--              +revisions    Versão (data): Descrição breve.
+--                            ++ 1.0 (27 Julho 2020): Versão inicial.
+--
+-- @section     AUTHORS & DEVELOPERS.
+--              +institution  UFAM - Universidade Federal do Amazonas.
+--              +courses      Engenharia da Computação / Engenharia Elétrica.
+--              +teacher      Miguel Grimm <miguelgrimm@gmail.com>
+--
+--                            Compilação e Simulação:
+-- 				 +student	  Kevin Guimarães <kevin.guimaraes37@gmail.com>
+--
+-- @section     LICENSE
+--
+--              GNU General Public License (GNU GPL).
+--
+--              Este programa é um software livre; Você pode redistribuí-lo
+--              e/ou modificá-lo de acordo com os termos do "GNU General Public
+--              License" como publicado pela Free Software Foundation; Seja a
+--              versão 3 da licença, ou qualquer outra versão posterior.
+--
+--              Este programa é distribuído na esperança de que seja útil,
+--              mas SEM QUALQUER GARANTIA; Sem a garantia implícita de
+--              COMERCIALIZAÇÃO OU USO PARA UM DETERMINADO PROPÓSITO.
+--              Veja o site da "GNU General Public License" para mais detalhes.
+--
+-- @htmlonly    http://www.gnu.org/copyleft/gpl.html
+--
+-- @section     REFERENCES.
+--              + CHU, Pong P. RTL Hardware Design Using VHDL. 2006. 669 p.
+--              + AMORE, Robert d'. VHDL - Descrição e Síntese de Circuitos
+--                Digitais. 2. ed. Rio de Janeiro : LTC, 2012. 292 p.
+--              + PEDRONI, Volnei A. Eletrônica Digital Moderna e VHDL.
+--                Rio de Janeiro : Elsevier, 2010. 619 p.
+--              + TOCCI, Ronald J., WIDNER, Neal S. & MOSS, Gregory.
+--                Sistemas Digitais - Princípios e Aplicações, 12. ed.
+--                São Paulo : Person Education do Brasil, 2018. 1034 p.
+--
+-- ############################################################################
+
+library ieee;
+use ieee.numeric_bit.all;
+use work.dsf_std.all;
+
+
+-- -----------------------------------------------------------------------------
+-- @detail     +ESPECIFICAÇÃO DA INTERFACE.
+--
+-- Esta função digital concatena 4 bits de dados para um vetor de 4 bits.
+-- 
+-- @param[in]  data3   -  1111..0000, vetor de 4 bits de dados da entrada 3.
+--
+--             data2   -  1111..0000, vetor de 4 bits de dados da entrada 2.
+--
+--             data1   -  1111..0000, vetor de 4 bits de dados da entrada 1.
+--
+--             data0   -  1111..0000, vetor de 4 bits de dados da entrada 0.
+--
+-- @param[out] result  -  1111111111111111..0000000000000000, vetor de 16 bits.
+-- ----------------------------------------------------------------------------
+entity dsf_vectors2vector is
+
+  port (
+
+    -- Dados de entrada: vetores de 4 bits.
+    data3  :  in      bit_vector(4-1 downto 0);
+	data2  :  in      bit_vector(4-1 downto 0);
+	data1  :  in      bit_vector(4-1 downto 0);
+	data0  :  in      bit_vector(4-1 downto 0);
+
+    -- Dados de saída: vetor de 16 bits.
+    result :  buffer  bit_vector(16-1 downto 0)
+
+  );
+
+end dsf_vectors2vector;
+
+
+architecture vectors2vector_a of dsf_vectors2vector is
+begin
+
+  -- OP. Resultado da concatenação dos vetores de dados.
+  result <= data3 & data2 & data1 & data0;
+
+end vectors2vector_a;

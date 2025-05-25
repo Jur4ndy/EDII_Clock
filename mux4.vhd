@@ -1,0 +1,20 @@
+entity mux4 is
+  port (
+    data_1  : in  bit_vector(3 downto 0);
+    data_0  : in  bit_vector(3 downto 0);
+    p       : in  bit;
+    result  : out bit_vector(3 downto 0)
+  );
+end mux4;
+
+architecture behavioral of mux4 is
+begin
+  process(data_0, data_1, p)
+  begin
+    case p is
+      when '0' => result <= data_0;
+      when '1' => result <= data_1;
+      when others => result <= (others => '0');  -- segurança
+    end case;
+  end process;
+end behavioral;

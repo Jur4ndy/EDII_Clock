@@ -1,0 +1,25 @@
+entity multplex is
+  port (
+    -- Dados de entrada: vetores de 16 bits e o bit do botão p.
+    data1  : in  bit_vector(15 downto 0);
+    data0  : in  bit_vector(15 downto 0);
+    p      : in  bit;
+
+    -- Dados de saída: vetor de 16 bits.
+    result : out bit_vector(15 downto 0)
+  );
+end multplex;
+
+architecture behavioral of multplex is
+begin
+
+  process(data0, data1, p)
+  begin
+    if p = '1' then
+      result <= data0;
+    else
+      result <= data1;
+    end if;
+  end process;
+
+end behavioral;
